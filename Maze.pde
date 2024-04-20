@@ -23,6 +23,7 @@ class Maze{
   void display(int level){
     imageMode(CORNER);
     image(mazes[level], x, y);
+    rectMode(CORNER);
     rect(25, 100, 450, 375);
   }
 }
