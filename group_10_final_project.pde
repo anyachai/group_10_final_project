@@ -8,6 +8,8 @@ Saves currentSave;
 NameEntry nameScreen;
 Toggle playing;
 StartScreen startScreen;
+PFont jersey;
+PFont pixel;
 
 void setup() {
   // Setup framerate, size, background
@@ -26,9 +28,14 @@ void setup() {
   nameScreen = new NameEntry(saveScreen, playing);
   currentSave = new Saves("void", 999, 9999);
   saveScreen = new SaveSelect("SaveFile.csv", currentSave, nameScreen, playing);
-  saveScreen.resetSaves();
+  //saveScreen.resetSaves();
   nameScreen.saveScreen = saveScreen;
   startScreen = new StartScreen("label", "message", saveScreen);
+  
+  // Setup font
+  jersey = createFont("Jersey10-Regular.ttf",100);
+  pixel = createFont("PixelifySans.ttf",100);
+  textFont(jersey);
 }
 
 void draw() {
