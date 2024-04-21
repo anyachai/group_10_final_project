@@ -13,7 +13,6 @@ class SaveButton {
   
   void display() {
     rectMode(CENTER);
-    textFont(jersey);
     stroke(outline);
     if (isInside()) {
       fill(100);
@@ -24,13 +23,10 @@ class SaveButton {
     fill(100);
     rect(position.x - 175, position.y, 100, 100);
     fill(255);
-    textSize(70);
+    textSize(50);
     textAlign(CENTER);
-    textFont(jersey);
-    text(str(info.saveNumber), position.x - 175, position.y + 25);
- 
-    textFont(pixel);
-    textSize(35);
+    text(str(info.saveNumber), position.x - 175, position.y + 15);
+    textSize(25);
     text(info.name, position.x + 50, position.y - 15);
     text("LEVEL " + str(info.level), position.x + 50, position.y + 35);
   }

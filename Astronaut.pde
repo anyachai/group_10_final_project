@@ -1,65 +1,60 @@
 class Astronaut {
-  PImage[] frames;
+  Sprite left;
+  Sprite right;
   PVector position;
-  int numFrames;
-  int currentFrame;
   Timer animationTimer;
   boolean moveX;
   int speed = 2;
+  boolean leftFlag;
 
-  Astronaut(PVector position, int numFrames, String leading, String trailing, int padding, int interval) {
+  Astronaut(PVector position) {
+    left = new Sprite(position, 2, "astroleft_", ".png", 2, 160);
+    right = new Sprite(position, 2, "astroright_", ".png", 2, 160);
     this.position = position;
-    this.numFrames = numFrames;
-    this.frames = new PImage[numFrames];
     this.moveX = true;
-
-    for (int i = 0; i < numFrames; i++) {
-      String imageName = leading + nf(i, padding) + trailing;
-      frames[i] = loadImage(imageName);
-    }
-
-    this.animationTimer = new Timer(interval);
-    this.animationTimer.start();
   }
-  
-    
+
   void update() {
-    if (upPressed && canMove(position.x, position.y - speed)) {
-      player.position.y -= speed;
-    }
-    if (downPressed && canMove(position.x, position.y + speed)) {
-      player.position.y += speed;
-    }
-    if (leftPressed && canMove(position.x - speed, position.y)) {
-      player.position.x -= speed;
-    }
-    if (rightPressed && canMove(position.x + speed, position.y)) {
-      player.position.x += speed;
-    }
+    left.update();
+    right.update();
     
-    if (animationTimer.update()) {
-      currentFrame = (currentFrame + 1) % numFrames;
+    changeDir();
+    
+    // Changing sprite direction
+    if (leftFlag){
+      left.display();
+    } else{
+      right.display();
     }
-  }
-
-  void display() {
-    //imageMode(CORNER);
-    PImage img = frames[currentFrame];
-    image(img, position.x, position.y, img.width, img.height);
   }
   
-  boolean canMove(float x, float y) {
-  // Check if the player can move to the given position
-  int playerRadius = 10;
-  for (int i = -playerRadius; i <= playerRadius; i++) {
-    for (int j = -playerRadius; j <= playerRadius; j++) {
-      int pixelColor = get((int)x + i, (int)y + j);
-      if (pixelColor == color(255)) {
-        return false; // Obstacle found, can't move
+  void changeDir(){
+    if (upPressed && canMove(position.x, position.y - speed, 10, color(255))) {
+      position.y -= speed;
+    }
+    if (downPressed && canMove(position.x, position.y + speed, 10, color(255))) {
+      position.y += speed;
+    }
+    if (leftPressed && canMove(position.x - speed, position.y, 10, color(255))) {
+      position.x -= speed;
+      leftFlag = true;
+    }
+    if (rightPressed && canMove(position.x + speed, position.y, 10, color(255))) {
+      position.x += speed;
+      leftFlag = false;
+    }
+  }
+  
+  boolean canMove(float x, float y, int radius, color c) {
+    for (int i = -radius; i <= radius; i++) {
+      for (int j = -radius; j <= radius; j++) {
+        int pixelColor = get((int)x + i, (int)y + j);
+        if (pixelColor == c) {
+          return false;
+        }
       }
     }
+      return true;
   }
-    return true;
-  }
-
+  
 }

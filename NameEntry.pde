@@ -31,16 +31,14 @@ class NameEntry {
     if (onScreen) {
       rectMode(CORNER);
       fill(255);
-      textFont(pixel);
-      textSize(40);
+      textSize(30);
       textAlign(CENTER);
       text("NAME: " + name, 250, 350);
       rectMode(CENTER);
       fill(255);
-      textFont(jersey);
-      textSize(30);
+      textSize(15);
       textAlign(CENTER);
-      text("ENTER YOUR NAME", 250, 300, 400, 100);
+      text("ENTER YOUR NAME:", 250, 300, 400, 100);
       saveName.display();
       clearName.display();
     } else {

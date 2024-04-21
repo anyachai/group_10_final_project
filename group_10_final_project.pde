@@ -1,5 +1,7 @@
 PImage logo;
 Astronaut player;
+Alien alien;
+Alien alien2;
 Maze maze;
 int level = 0; // 0 for testing purposes, level can increase if player progresses
 boolean upPressed, downPressed, leftPressed, rightPressed;
@@ -8,8 +10,6 @@ Saves currentSave;
 NameEntry nameScreen;
 Toggle playing;
 StartScreen startScreen;
-PFont jersey;
-PFont pixel;
 
 void setup() {
   // Setup framerate, size, background
@@ -20,22 +20,20 @@ void setup() {
   
   // load images
   logo = loadImage("logo.png");
-  PVector location = new PVector(35,285);
-  player = new Astronaut(location, 2, "astro_", ".PNG", 2, 160);
+
+  player = new Astronaut(new PVector(35,285));
+  alien = new Alien(new PVector(385,285), true);
+  alien2 = new Alien(new PVector(115,285), true);
   maze = new Maze("maze_", ".png", 25, 100, 0, 2, 1);
+  
   
   // setup GUI screens
   nameScreen = new NameEntry(saveScreen, playing);
   currentSave = new Saves("void", 999, 9999);
   saveScreen = new SaveSelect("SaveFile.csv", currentSave, nameScreen, playing);
-  //saveScreen.resetSaves();
+  saveScreen.resetSaves();
   nameScreen.saveScreen = saveScreen;
   startScreen = new StartScreen("label", "message", saveScreen);
-  
-  // Setup font
-  jersey = createFont("Jersey10-Regular.ttf",100);
-  pixel = createFont("PixelifySans.ttf",100);
-  textFont(jersey);
 }
 
 void draw() {
@@ -43,23 +41,28 @@ void draw() {
   
   // Display the player/game gui
   if (playing.toggled) {
-    
-    
     background(0);
     stroke(255);
     noFill();
-    maze.display(0);
+    
     imageMode(CENTER);
     image(logo, width/2, 50);
-    println(currentSave.name);
-    
+    maze.display(0);
+
     player.update();
-    player.display();
+    alien.update();
+    alien2.update();
+    
+    if (alien.detectPlayer()|alien2.detectPlayer()){
+      playing.toggleOff();
+      startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+    }
   }
   
   startScreen.display();
   saveScreen.display();
   nameScreen.display();
+
 }
 
 void keyPressed() {

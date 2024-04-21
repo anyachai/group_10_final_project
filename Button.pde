@@ -22,8 +22,7 @@ class Button {
     fill(Color);
     }
     rect(position.x, position.y, dimension.x, dimension.y);
-    textFont(jersey);
-    textSize(dimension.y * .8);
+    textSize(dimension.y * .4);
     textAlign(CENTER);
     fill(255);
     text(label, position.x, position.y);
