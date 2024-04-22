@@ -6,7 +6,7 @@ class Sprite {
   int currentFrame;
   PVector position;
   Timer animationTimer;
-  boolean moveX;
+  boolean applyTint;
 
   Sprite(PVector position, int numFrames, String leading, String trailing, int padding, int interval) {
     this.position = position;
@@ -14,7 +14,6 @@ class Sprite {
     this.right = new PImage[numFrames];
     this.left = new PImage[numFrames];
     this.frames = new PImage[numFrames];
-    this.moveX = true;
     
     for (int i = 0; i < numFrames; i++) {
         String imageName = leading + nf(i, padding) + trailing;
@@ -34,16 +33,7 @@ class Sprite {
   void display() {
     imageMode(CENTER);
     PImage img = frames[currentFrame];
+   
     image(img, position.x, position.y, img.width, img.height);
-  }
-
-  void pauseOrResume() {
-    if (moveX) {
-      animationTimer.pause();
-      moveX = false;
-    } else {
-      moveX = true;
-      animationTimer.resume();
-    }
   }
 }

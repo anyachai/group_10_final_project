@@ -7,12 +7,14 @@ Star star;
 int level = 0; // 0 for testing purposes, level can increase if player progresses
 boolean upPressed, downPressed, leftPressed, rightPressed;
 boolean starOn;
-boolean powerOn = false;
+boolean powerOn;
 SaveSelect saveScreen;
 Saves currentSave;
 NameEntry nameScreen;
 Toggle playing;
 StartScreen startScreen;
+boolean first;
+int lives;
 
 void setup() {
   // Setup framerate, size, background
@@ -113,34 +115,53 @@ void displayPlayGUI(){
 }
 
 void setupLvl1(){
+  first = true;
   player = new Astronaut(new PVector(35,285));
   alien = new Alien(new PVector(385,285), true);
   alien2 = new Alien(new PVector(115,285), true);
   maze = new Maze("maze_", ".png", 25, 100, 0, 2, 1);
   star = new Star(new PVector(width/2,190), "star.png");
   starOn = true;
+  powerOn = false;
+  lives = 3;
 }
 
-void updateLvl1(){
+void updateLvl1() {
   maze.display(0);
-  star.display(starOn);
+  if (starOn) {
+    star.display();
+  }
   player.update(powerOn);
   alien.update();
   alien2.update();
+
+  // Check if the player has collected the star
+  if (star.detectPlayer(first)) {
+    print("detected", first);
+    first = false;
+    starOn = false;
+    powerOn = true; // Activate the power-up
+  }
+  if (powerOn && !player.powerupActive) {
+    player.displayPowerup();
+  } else {
+    powerOn = false;
+  }
   
-  if (alien.detectPlayer()|alien2.detectPlayer()){
-    setupLvl1();
-    if (powerOn){
-      
-      powerOn = false;
-    } else{
+  // Check if the alien collides with the player, Once lives = 0 game is over
+  if (alien.detectPlayer() || alien2.detectPlayer()) {
+    respawnPlayer();
+    lives -= 1;
+    if (lives == 0){
       playing.toggleOff();
+      setupLvl1();
       startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
     }
   }
-  
-  if (star.detectPlayer()){
-    starOn = false;
-    powerOn = true;
-  }
+}
+
+// Function to respawn the player at their current position
+void respawnPlayer() {
+  // You may want to add some delay or animation here before respawning the player
+  player.updatePosition(new PVector(35, 285)); // Set the player's position to a default respawn position
 }

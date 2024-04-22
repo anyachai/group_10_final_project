@@ -3,20 +3,20 @@ class Astronaut {
   Sprite right;
   PVector position;
   Timer animationTimer;
-  boolean moveX;
   int speed = 2;
   boolean leftFlag;
   PImage powerup;
-  boolean powerOn;
-  float rotationAngle = 0; // Variable to keep track of rotation angle
-
+  float rotationAngle = 0; 
+  boolean powerupActive;
+  Timer powerupTimer;
 
   Astronaut(PVector position) {
     left = new Sprite(position, 2, "astroleft_", ".png", 2, 160);
     right = new Sprite(position, 2, "astroright_", ".png", 2, 160);
     this.position = position;
-    this.moveX = true;
     powerup = loadImage("powerup.png");
+    powerupTimer = new Timer(10000);
+    powerupActive = false; // Initially power-up is not active
   }
 
   void update(boolean powerOn) {
@@ -25,16 +25,31 @@ class Astronaut {
     
     changeDir();
     
-    // Displaying power up field if applicable
-    if (powerOn){
-      displayPowerup();
+    // Start the power-up display if activated and not already active
+    if (powerOn && !powerupActive) {
+        powerupActive = true;
+        powerupTimer.start();
+        println("Power-up activated, timer started");
+    }
+    
+    // Check if power-up duration has expired
+    if (powerupActive) {
+        // Update the power-up timer
+        if (powerupTimer.update()) {
+            println("Power-up timer ended");
+            powerupActive = false; // Turn off the power-up
+        }
     }
     
     // Changing sprite direction
-    if (leftFlag){
-      left.display();
-    } else{
-      right.display();
+    if (leftFlag) {
+        left.display();
+    } else {
+        right.display();
+    }
+    
+    if (powerupActive) {
+        displayPowerup();
     }
   }
   
@@ -68,17 +83,19 @@ class Astronaut {
   }
   
   void displayPowerup() {
-      pushMatrix(); // Save the current transformation state
-      translate(position.x, position.y); // Move the origin to the position of the power-up
-      rotate(rotationAngle); // Rotate the power-up by the current rotation angle
-      imageMode(CENTER);
-      image(powerup, 0, 0); // Display the power-up at the new origin (0, 0)
-      popMatrix(); // Restore the previous transformation state
-      
-      // Increment the rotation angle for continuous rotation
-      rotationAngle += radians(3); // Adjust the rotation speed as needed
-  }
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(rotationAngle);
+    imageMode(CENTER);
+    image(powerup, 0, 0);
+    popMatrix();
 
+    rotationAngle += radians(3);
+  }
   
-  
+  void updatePosition(PVector position){
+    left.position = position;
+    right.position = position;
+    this.position = position;
+  }
 }

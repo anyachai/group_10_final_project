@@ -8,20 +8,22 @@ class Star{
     star = loadImage(image);
   }
   
-  void display(boolean on){
-    if (on){
+  void display(){
     imageMode(CENTER);
     image(star, position.x, position.y);
-    } 
   }
   
-  boolean detectPlayer(){
-    color c = get((int)position.x, (int) position.y);
-    if (c == color(#80ecff)){
-      return true;
+  boolean detectPlayer(boolean first){
+    if (first){
+      color c = get((int)position.x, (int) position.y);
+      if (c == color(#80ecff)){
+        return true;
+      } else{
+        return false;
+      }
     } else{
       return false;
     }
-  } 
+  }
   
 }

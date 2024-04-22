@@ -14,8 +14,6 @@ class Alien{
     
   void update() {
     alien.update();
-
-    
     if (moveX) {
         boolean canMoveUp = canMove(position.x, position.y - speed, 13);
         boolean canMoveDown = canMove(position.x, position.y + speed, 13);
