@@ -3,8 +3,11 @@ Astronaut player;
 Alien alien;
 Alien alien2;
 Maze maze;
+Star star;
 int level = 0; // 0 for testing purposes, level can increase if player progresses
 boolean upPressed, downPressed, leftPressed, rightPressed;
+boolean starOn;
+boolean powerOn = false;
 SaveSelect saveScreen;
 Saves currentSave;
 NameEntry nameScreen;
@@ -21,11 +24,10 @@ void setup() {
   // load images
   logo = loadImage("logo.png");
 
-  player = new Astronaut(new PVector(35,285));
-  alien = new Alien(new PVector(385,285), true);
-  alien2 = new Alien(new PVector(115,285), true);
-  maze = new Maze("maze_", ".png", 25, 100, 0, 2, 1);
-  
+  // load the level
+  if (level == 0){
+    setupLvl1();
+  }
   
   // setup GUI screens
   nameScreen = new NameEntry(saveScreen, playing);
@@ -40,22 +42,15 @@ void draw() {
   background(0);
   
   // Display the player/game gui
-  if (playing.toggled) {
+  if (playing.toggled){
     background(0);
     stroke(255);
     noFill();
     
-    imageMode(CENTER);
-    image(logo, width/2, 50);
-    maze.display(0);
-
-    player.update();
-    alien.update();
-    alien2.update();
+    displayPlayGUI();
     
-    if (alien.detectPlayer()|alien2.detectPlayer()){
-      playing.toggleOff();
-      startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+    if (level == 0){
+      updateLvl1();
     }
   }
   
@@ -109,5 +104,43 @@ void mouseReleased() {
       currentSave = saveScreen.getCurrentSave();
       break;
     }
+  }
+}
+
+void displayPlayGUI(){
+  imageMode(CENTER);
+  image(logo, width/2, 50);
+}
+
+void setupLvl1(){
+  player = new Astronaut(new PVector(35,285));
+  alien = new Alien(new PVector(385,285), true);
+  alien2 = new Alien(new PVector(115,285), true);
+  maze = new Maze("maze_", ".png", 25, 100, 0, 2, 1);
+  star = new Star(new PVector(width/2,190), "star.png");
+  starOn = true;
+}
+
+void updateLvl1(){
+  maze.display(0);
+  star.display(starOn);
+  player.update(powerOn);
+  alien.update();
+  alien2.update();
+  
+  if (alien.detectPlayer()|alien2.detectPlayer()){
+    setupLvl1();
+    if (powerOn){
+      
+      powerOn = false;
+    } else{
+      playing.toggleOff();
+      startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+    }
+  }
+  
+  if (star.detectPlayer()){
+    starOn = false;
+    powerOn = true;
   }
 }
