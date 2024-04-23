@@ -9,8 +9,9 @@ class SaveSelect {
   Saves currentSave;
   NameEntry nameScreen;
   Toggle playing;
+  PauseScreen pauseScreen;
   
-  SaveSelect (String fileName, Saves currentSave, NameEntry nameScreen, Toggle playing) {
+  SaveSelect (String fileName, Saves currentSave, NameEntry nameScreen, Toggle playing, PauseScreen pauseScreen) {
     this.fileName = fileName;
     this.savesTable = loadTable(fileName,"header,csv");
     updateButtons();
@@ -18,6 +19,7 @@ class SaveSelect {
     this.currentSave = currentSave;
     this.nameScreen = nameScreen;
     this.playing = playing;
+    this.pauseScreen = pauseScreen;
   }
   
   void resetSaves() {
@@ -34,15 +36,16 @@ class SaveSelect {
       newRow.setInt("new", 1);
     }
     saveTable(savesTable, fileName);
+    updateButtons();
   }
   
   void updateButtons() {
     TableRow row = savesTable.getRow(0);
-    this.save1 = new SaveButton(new PVector(250, 125), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
+    this.save1 = new SaveButton(new PVector(250, 175), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
     row = savesTable.getRow(1);
-    this.save2 = new SaveButton(new PVector(250, 250), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
+    this.save2 = new SaveButton(new PVector(250, 300), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
     row = savesTable.getRow(2);
-    this.save3 = new SaveButton(new PVector(250, 375), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
+    this.save3 = new SaveButton(new PVector(250, 425), color(0), color(255), new Saves(row.getString("name"), row.getInt("level"), row.getInt("saveNum")));
   }
   
   void mouseInteract() {
@@ -53,6 +56,7 @@ class SaveSelect {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
           playing.toggled = true;
+          pauseScreen.started = true;
         } else {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
@@ -65,6 +69,7 @@ class SaveSelect {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
           playing.toggled = true;
+          pauseScreen.started = true;
         } else {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
@@ -77,6 +82,7 @@ class SaveSelect {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
           playing.toggled = true;
+          pauseScreen.started = true;
         } else {
           currentSave = new Saves(rower.getString("name"), rower.getInt("level"), rower.getInt("saveNum"));
           onScreen = false;
@@ -96,13 +102,21 @@ class SaveSelect {
     savesTable.setInt(index, 1, currentSave.level);
     savesTable.setInt(index, 3, 0);
     saveTable(savesTable, fileName);
+    updateButtons();
   }
     
   void display() {
     if (onScreen) {
+      textFont(jersey);
+      textSize(40);
+      textAlign(CENTER);
+      fill(255);
+      text("SELECT A SAVE:", 250, 100);
       save1.display();
       save2.display();
       save3.display();
+      imageMode(CENTER);
+      image(logo, width/2, 50);
     }
   }
   

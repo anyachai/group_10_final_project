@@ -6,8 +6,11 @@ NameEntry nameScreen;
 SaveSelect saveScreen;
 Saves currentSave;
 StartScreen startScreen;
+PauseScreen pauseScreen;
 SoundFile music;
 PImage logo;
+PFont jersey;
+PFont pixel;
 boolean upPressed, downPressed, leftPressed, rightPressed;
 
 void setup() {
@@ -19,20 +22,31 @@ void setup() {
   // Create instances of GUI screens
   logo = loadImage("logo.png");
   playing = new Toggle(false);
-  nameScreen = new NameEntry(saveScreen, playing);
+  nameScreen = new NameEntry(saveScreen, playing, pauseScreen);
   currentSave = new Saves("void", 999, 9999);
-  saveScreen = new SaveSelect("SaveFile.csv", currentSave, nameScreen, playing);
+  saveScreen = new SaveSelect("SaveFile.csv", currentSave, nameScreen, playing, pauseScreen);
   saveScreen.resetSaves();
   nameScreen.saveScreen = saveScreen;
+  pauseScreen = new PauseScreen(playing, music, startScreen, saveScreen);
+  nameScreen.pauseScreen = pauseScreen;
+  saveScreen.pauseScreen = pauseScreen;
   startScreen = new StartScreen("label", "message", saveScreen);
+  pauseScreen.startScreen = startScreen;
+  pauseScreen.saveScreen = saveScreen;
   
   //SOUND
   music = new SoundFile(this, "8bit.mp3");
   music.amp(0.50); // Set volume to 50%
   music.play();
+  pauseScreen.music = music;
   
   // Setup level
   level1 = new Level1();
+  
+  // Setup font
+  jersey = createFont("Jersey10-Regular.ttf",100);
+  pixel = createFont("PixelifySans.ttf",100);
+  textFont(jersey);
 }
 
 void draw() {
@@ -51,6 +65,7 @@ void draw() {
   startScreen.display();
   saveScreen.display();
   nameScreen.display();
+  pauseScreen.display();
 }
 
 void keyPressed() {
@@ -64,7 +79,6 @@ void keyPressed() {
   } else if (keyCode == RIGHT) {
     rightPressed = true;
   }
-  
   nameScreen.keyInteract();
 }
 
@@ -97,5 +111,7 @@ void mouseReleased() {
       currentSave = saveScreen.getCurrentSave();
       break;
     }
+    break;
   }
+  pauseScreen.mouseInteract();
 }
