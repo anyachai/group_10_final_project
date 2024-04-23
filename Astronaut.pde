@@ -19,11 +19,11 @@ class Astronaut {
     powerupActive = false; // Initially power-up is not active
   }
 
-  void update(boolean powerOn) {
+  void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed, boolean powerOn) {
     left.update();
     right.update();
     
-    changeDir();
+    changeDir(upPressed, downPressed, leftPressed, rightPressed);
     
     // Start the power-up display if activated and not already active
     if (powerOn && !powerupActive) {
@@ -53,7 +53,7 @@ class Astronaut {
     }
   }
   
-  void changeDir(){
+  void changeDir(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {
     if (upPressed && canMove(position.x, position.y - speed, 10, color(255))) {
       position.y -= speed;
     }

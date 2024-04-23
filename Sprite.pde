@@ -33,7 +33,6 @@ class Sprite {
   void display() {
     imageMode(CENTER);
     PImage img = frames[currentFrame];
-   
     image(img, position.x, position.y, img.width, img.height);
   }
 }

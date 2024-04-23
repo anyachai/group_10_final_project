@@ -26,4 +26,5 @@ class Maze{
     rectMode(CORNER);
     rect(25, 100, 450, 375);
   }
+
 }
