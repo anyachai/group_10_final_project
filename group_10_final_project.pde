@@ -1,9 +1,12 @@
+import processing.sound.*;
+
 Level1 level1;
 Toggle playing;
 NameEntry nameScreen;
 SaveSelect saveScreen;
 Saves currentSave;
 StartScreen startScreen;
+SoundFile music;
 PImage logo;
 boolean upPressed, downPressed, leftPressed, rightPressed;
 
@@ -22,6 +25,11 @@ void setup() {
   saveScreen.resetSaves();
   nameScreen.saveScreen = saveScreen;
   startScreen = new StartScreen("label", "message", saveScreen);
+  
+  //SOUND
+  music = new SoundFile(this, "8bit.mp3");
+  music.amp(0.50); // Set volume to 50%
+  music.play();
   
   // Setup level
   level1 = new Level1();
