@@ -29,7 +29,7 @@ class Level1 {
     starOn = true;
     pieceOn = true;
     powerOn = false;
-    hearts = new ImgArray(new PVector(40, 45), 3, "heart", ".png", 2);
+    hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = new ImgArray(new PVector(170, 60), 10, "default", ".png", 2); // Corrected
     lives = 3;
     nxtLvl = 0;
@@ -140,7 +140,7 @@ class Level2 {
     starOn = true;
     pieceOn = true;
     powerOn = false;
-    hearts = new ImgArray(new PVector(40, 45), 3, "heart", ".png", 2);
+    hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level1.pieces;
     lives = 3;
     nxtLvl = 0;
@@ -257,7 +257,7 @@ class Level3 {
     piece0On = true;
     piece1On = true;
     powerOn = false;
-    hearts = new ImgArray(new PVector(40, 45), 3, "heart", ".png", 2);
+    hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level2.pieces; 
     lives = 3;
     nxtLvl = 0;
@@ -384,7 +384,7 @@ class Level4 {
     piece0On = true;
     piece1On = true;
     powerOn = false;
-    hearts = new ImgArray(new PVector(40, 45), 3, "heart", ".png", 2);
+    hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level3.pieces; 
     lives = 3;
     nxtLvl = 0;
@@ -519,7 +519,7 @@ class Level5 {
     piece2On = true;
     piece3On = true;
     powerOn = false;
-    hearts = new ImgArray(new PVector(40, 45), 3, "heart", ".png", 2);
+    hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level4.pieces; 
     lives = 3;
     nxtLvl = 0;

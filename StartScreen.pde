@@ -26,6 +26,7 @@ class StartScreen {
       textSize(20);
       textAlign(CENTER);
       text(message, 250, 250, 500, 300);
+
       start.display();
       imageMode(CENTER);
       image(logo, width/2, 50);
