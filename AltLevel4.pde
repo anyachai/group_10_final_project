@@ -1,4 +1,4 @@
-class Level4 {
+class AltLevel4 {
   Astronaut player;
   Alien alien;
   Alien alien2;
@@ -26,7 +26,7 @@ class Level4 {
   ImgArray hearts;
   ImgArray pieces;
 
-  Level4() {
+  AltLevel4() {
     setup();
   }
 
