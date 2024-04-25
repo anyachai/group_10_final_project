@@ -1,6 +1,7 @@
 import processing.sound.*;
-
 Level1 level1;
+Level2 level2;
+Level3 level3;
 Toggle playing;
 NameEntry nameScreen;
 SaveSelect saveScreen;
@@ -12,6 +13,7 @@ PImage logo;
 PFont jersey;
 PFont pixel;
 boolean upPressed, downPressed, leftPressed, rightPressed;
+int level;
 
 void setup() {
   // Setup framerate, size, background
@@ -40,8 +42,13 @@ void setup() {
   music.play();
   pauseScreen.music = music;
   
+  // Load level = DEPENDS ON SAVE FILE
+  level = 1;
+  
   // Setup level
   level1 = new Level1();
+  level2 = new Level2();
+  level3 = new Level3();
   
   // Setup font
   jersey = createFont("Jersey10-Regular.ttf",100);
@@ -59,7 +66,15 @@ void draw() {
     noFill();
     
     // Update level
-    level1.update(upPressed, downPressed, leftPressed, rightPressed);
+    if (level == 1 ){
+      level1.update(upPressed, downPressed, leftPressed, rightPressed);
+    }
+    if (level == 2 || level1.returnNxtLvl() == 2){
+      level2.update(upPressed, downPressed, leftPressed, rightPressed);
+    }
+    if (level == 3 || level2.returnNxtLvl() == 3){
+      level3.update(upPressed, downPressed, leftPressed, rightPressed);
+    }
   }
   
   startScreen.display();

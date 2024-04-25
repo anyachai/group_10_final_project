@@ -3,12 +3,13 @@ class Alien{
   PVector position;
   Timer animationTimer;
   boolean moveX;
-  int speed = 2;
+  int speed;
 
-  Alien(PVector position, boolean moveX) {
+  Alien(PVector position, boolean moveX, int speed) {
     alien = new Sprite(position, 2, "alien_", ".png", 2, 160);
     this.position = position;
     this.moveX = moveX;
+    this.speed = speed;
   }
   
     
