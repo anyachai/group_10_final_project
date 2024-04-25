@@ -2,6 +2,8 @@ import processing.sound.*;
 Level1 level1;
 Level2 level2;
 Level3 level3;
+Level4 level4;
+Level5 level5;
 Toggle playing;
 NameEntry nameScreen;
 SaveSelect saveScreen;
@@ -49,6 +51,8 @@ void setup() {
   level1 = new Level1();
   level2 = new Level2();
   level3 = new Level3();
+  level4 = new Level4();
+  level5 = new Level5();
   
   // Setup font
   jersey = createFont("Jersey10-Regular.ttf",100);
@@ -74,6 +78,12 @@ void draw() {
     }
     if (level == 3 || level2.returnNxtLvl() == 3){
       level3.update(upPressed, downPressed, leftPressed, rightPressed);
+    }
+    if (level == 4 || level3.returnNxtLvl() == 4){
+      level4.update(upPressed, downPressed, leftPressed, rightPressed);
+    }
+    if (level == 5 || level4.returnNxtLvl() == 5){
+      level5.update(upPressed, downPressed, leftPressed, rightPressed);
     }
   }
   
