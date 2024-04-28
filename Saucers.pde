@@ -14,11 +14,11 @@ class Saucers {
         float r = random(3);
         
         if (r <= 1) {
-            return new SaucerA("saucerA", 2, true, 0, 0);
+            return new SaucerA("saucerA", 2, true, 0, 0, 0, 0);
         } else if (r <= 2) {
-            return new SaucerB("saucerB", 3, true, 0, 0);
+            return new SaucerB("saucerB", 3, true, 0, 0, 0, 0);
         } else {
-            return new SaucerC("saucerC", 4, true, 0, 0);
+            return new SaucerC("saucerC", 4, true, 0, 0, 0, 0);
         }
     }
     
@@ -31,17 +31,39 @@ class Saucers {
             saucerList.add(newSaucer());
         }
     }
+    
+    void burst(int i, float pos_x, float pos_y, float vel_x, float vel_y) {         
+        switch(saucerList.get(i).type) {
+            case 2: 
+                saucerList.add(new SaucerA("saucerA", 2, false, 
+                               pos_x + 12*vel_y, pos_y - 12*vel_x, vel_y, -vel_x));
+                saucerList.add(new SaucerA("saucerA", 2, false,
+                               pos_x - 12*vel_y, pos_y + 12*vel_x, -vel_y, vel_x));
+                break;
+            case 3:
+                saucerList.add(new SaucerB("saucerB", 3, false,
+                               pos_x + 16*vel_y, pos_y - 16*vel_x, vel_y, -vel_x));
+
+                saucerList.add(new SaucerB("saucerB", 3, false,
+                               pos_x - 16*vel_y, pos_y + 16*vel_x, -vel_y, vel_x));
+                break;
+        }
+        
+        saucerList.remove(i);
+    }
 }
 
 class SaucerA {
     PImage outerBody, innerBody1, innerBody2; // First layer, On & off states of the second layer
-    PVector pos, vel = PVector.random2D().mult(2); // Position and Velocity of saucer
+    PVector pos, vel; // Position and Velocity of saucer
     int radius; // Size of the saucer
     float[] angPos; // Angular positions of the layers
     float[] angVel; // Angular velocity of the layers
     int[] flashTimes; // flash times for flashable components
+    int type;
   
-    SaucerA(String fileName, int animationLayers, boolean edgeSpawn, int spawnX, int spawnY) {
+    SaucerA(String fileName, int animationLayers, boolean edgeSpawn, 
+            float spawnX, float spawnY, float velX, float velY) {
         // Initialize rotating layers/components of the saucer
         outerBody = loadImage(fileName + 0 + ".png");
         innerBody1 = loadImage(fileName + 1 + ".png");
@@ -59,15 +81,20 @@ class SaucerA {
         // Initialize flash times for flashable components
         flashTimes = new int[animationLayers - 1];
         for (int i = 0; i < animationLayers - 1; i++) {
-            flashTimes[i] = int(random(100));
+            flashTimes[i] = int(random(50));
         }
     
         // Spawn on the edge or on the screen
         if (edgeSpawn) {
             spawnOnEdge();
+            vel = PVector.random2D().mult(3);
         } else {
             pos = new PVector(spawnX, spawnY);
+            vel = new PVector(velX, velY);
         }
+        
+        // Saucer type
+        type = 1;
     }
   
     void spawnOnEdge() {
@@ -99,11 +126,12 @@ class SaucerA {
 
     // Animating the flashing components
     void animateBody(boolean isFlashing, float angPos, int flashTime, PImage flashOn, PImage flashOff) {
+        imageMode(CENTER);
         pushMatrix();
         rotate(TWO_PI * angPos);
         if (isFlashing) {
-            if ((frameCount % 120 >= flashTime) && 
-                (frameCount % 120 <= flashTime + 20)) {
+            if ((frameCount % 60 >= flashTime) && 
+                (frameCount % 60 <= flashTime + 10)) {
                 image(flashOn, 0, 0);
             } else {
                 image(flashOff, 0, 0);
@@ -139,10 +167,12 @@ class SaucerA {
 class SaucerB extends SaucerA {
     PImage innerBody3, innerBody4; // On & off states of the third layer
     
-    SaucerB(String fileName, int animationLayers, boolean edgeSpawn, int spawnX, int spawnY) {
-        super(fileName, animationLayers, edgeSpawn, spawnX, spawnY);
+    SaucerB(String fileName, int animationLayers, boolean edgeSpawn, 
+            float spawnX, float spawnY, float velX, float velY) {
+        super(fileName, animationLayers, edgeSpawn, spawnX, spawnY, velX, velY);
         innerBody3 = loadImage(fileName + 3 + ".png");
         innerBody4 = loadImage(fileName + 4 + ".png");
+        type = 2;
     }
     
     void display() {
@@ -162,10 +192,12 @@ class SaucerB extends SaucerA {
 class SaucerC extends SaucerB {
     PImage innerBody5, innerBody6; // On & off states of the fourth layer
     
-    SaucerC(String fileName, int animationLayers, boolean edgeSpawn, int spawnX, int spawnY) {
-        super(fileName, animationLayers, edgeSpawn, spawnX, spawnY);
+    SaucerC(String fileName, int animationLayers, boolean edgeSpawn, 
+            float spawnX, float spawnY, float velX, float velY) {
+        super(fileName, animationLayers, edgeSpawn, spawnX, spawnY, velX, velY);
         innerBody5 = loadImage(fileName + 5 + ".png");
         innerBody6 = loadImage(fileName + 6 + ".png");
+        type = 3;
     }
     
     void display() {

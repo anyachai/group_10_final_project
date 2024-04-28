@@ -32,7 +32,7 @@ class Level1 {
     hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = new ImgArray(new PVector(170, 60), 10, "default", ".png", 2); // Corrected
     lives = 3;
-    nxtLvl = 0;
+    nxtLvl = 1;
   }
 
   void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {
@@ -143,7 +143,7 @@ class Level2 {
     hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level1.pieces;
     lives = 3;
-    nxtLvl = 0;
+    nxtLvl = 2;
   }
 
   void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {
@@ -260,7 +260,7 @@ class Level3 {
     hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level2.pieces; 
     lives = 3;
-    nxtLvl = 0;
+    nxtLvl = 3;
   }
 
   void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {
@@ -387,7 +387,7 @@ class Level4 {
     hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level3.pieces; 
     lives = 3;
-    nxtLvl = 0;
+    nxtLvl = 4;
   }
 
   void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {
@@ -522,7 +522,7 @@ class Level5 {
     hearts = new ImgArray(new PVector(40, 60), 3, "heart", ".png", 2);
     pieces = level4.pieces; 
     lives = 3;
-    nxtLvl = 0;
+    nxtLvl = 5;
   }
 
   void update(boolean upPressed, boolean downPressed, boolean leftPressed, boolean rightPressed) {

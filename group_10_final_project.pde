@@ -4,6 +4,7 @@ Level2 level2;
 Level3 level3;
 Level4 level4;
 Level5 level5;
+Level6 level6;
 Toggle playing;
 NameEntry nameScreen;
 SaveSelect saveScreen;
@@ -14,7 +15,7 @@ SoundFile music;
 PImage logo;
 PFont jersey;
 PFont pixel;
-boolean upPressed, downPressed, leftPressed, rightPressed;
+boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
 int level;
 
 void setup() {
@@ -53,6 +54,7 @@ void setup() {
   level3 = new Level3();
   level4 = new Level4();
   level5 = new Level5();
+  level6 = new Level6();
   
   // Setup font
   jersey = createFont("Jersey10-Regular.ttf",100);
@@ -70,20 +72,25 @@ void draw() {
     noFill();
     
     // Update level
-    if (level == 1 ){
-      level1.update(upPressed, downPressed, leftPressed, rightPressed);
-    }
-    if (level == 2 || level1.returnNxtLvl() == 2){
-      level2.update(upPressed, downPressed, leftPressed, rightPressed);
-    }
-    if (level == 3 || level2.returnNxtLvl() == 3){
-      level3.update(upPressed, downPressed, leftPressed, rightPressed);
-    }
-    if (level == 4 || level3.returnNxtLvl() == 4){
-      level4.update(upPressed, downPressed, leftPressed, rightPressed);
-    }
-    if (level == 5 || level4.returnNxtLvl() == 5){
-      level5.update(upPressed, downPressed, leftPressed, rightPressed);
+    switch(level) {
+      case 1: 
+        level1.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level1.returnNxtLvl(); break;
+      case 2:
+        level2.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level2.returnNxtLvl(); break;
+      case 3:
+        level3.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level3.returnNxtLvl(); break;
+      case 4:
+        level4.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level4.returnNxtLvl(); break;
+      case 5:
+        level5.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level5.returnNxtLvl(); break;
+      case 6:
+        level6.update();
+        break;
     }
   }
   
@@ -103,6 +110,8 @@ void keyPressed() {
     leftPressed = true;
   } else if (keyCode == RIGHT) {
     rightPressed = true;
+  } if (key == 32) {
+    spacePressed = true;
   }
   nameScreen.keyInteract();
 }
@@ -117,6 +126,8 @@ void keyReleased() {
     leftPressed = false;
   } else if (keyCode == RIGHT) {
     rightPressed = false;
+  } if (key == 32) {
+    spacePressed = false;
   }
 }
 
