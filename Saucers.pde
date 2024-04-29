@@ -6,15 +6,15 @@ class Saucers {
         saucerLimit = saucerPopulation;
         for (int i = 0; i < saucerLimit; i++) {
             //saucerList.add(newSaucer(i));
-            switch(i/3) {
+            switch(i%3) {
                 case 0: 
-                    saucerList.add(new SaucerA("saucerA", 2, true, 0, 0, 0, 0));
+                    saucerList.add(new SaucerC("saucerC", 4, true, 0, 0, 0, 0));
                     break;
                 case 1:
                     saucerList.add(new SaucerB("saucerB", 3, true, 0, 0, 0, 0));
                     break;
                 case 2:
-                    saucerList.add(new SaucerC("saucerC", 4, true, 0, 0, 0, 0));
+                    saucerList.add(new SaucerA("saucerA", 2, true, 0, 0, 0, 0));
                     break;
             }
         }
