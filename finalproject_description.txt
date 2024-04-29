@@ -1,1 +1,10 @@
+Spaceship Decimus is broken and it's up to you to collect the missing pieces, put it together, and fly back to your planet! To exit each maze level, use the arrow keys to move around collect all the available pieces. After five maze levels, use the arrow keys to fly your ship and use the spacebar to shoot! Watch out for aliens and asteroids though, they could kill you!
 
+Ben: (Responsible for GUI systems and data entry)
+- Saves: Class for individual saves
+- NameEntry: Class for displaying and entering names into the csv file
+- GameEnd: Class for displaying a message at the end of the game
+- PauseScreen: Shows options to mute the game, quit the game, and return to the game
+- SaveSelect: Screen that accesses a CSV file and reads data and can set the current save of the game based on what the user selects.
+- Button: Button Class
+- Unexpected challenges: Getting the csv system to work properly, making sure all the GUIs worked properly.
