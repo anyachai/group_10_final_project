@@ -9,7 +9,7 @@ Ben: (Responsible for GUI systems and data entry)
 - Button: Button Class
 - Unexpected challenges: Getting the csv system to work properly, making sure all the GUIs worked properly.
 
-Anya: (Responsible for Maze lebels 1-5)
+Anya: (Responsible for Maze levels 1-5)
 - Astronaut (Type of Sprite): Uses left, right, up, and down arrow keys to move.  
 - Alien (Type of Sprite): Moves either up and down or left and right. Heart is lost when Alien runs into Astronaut.
 - Img Array: Displays things in an array. Either hearts, or maze pieces.
