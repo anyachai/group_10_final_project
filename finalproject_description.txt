@@ -8,3 +8,19 @@ Ben: (Responsible for GUI systems and data entry)
 - SaveSelect: Screen that accesses a CSV file and reads data and can set the current save of the game based on what the user selects.
 - Button: Button Class
 - Unexpected challenges: Getting the csv system to work properly, making sure all the GUIs worked properly.
+
+Anya: (Responsible for Maze lebels 1-5)
+- Astronaut (Type of Sprite): Uses left, right, up, and down arrow keys to move.  
+- Alien (Type of Sprite): Moves either up and down or left and right. Heart is lost when Alien runs into Astronaut.
+- Img Array: Displays things in an array. Either hearts, or maze pieces.
+- Items: A type of item that can be picked up. Either pieces or stars.
+- Levels: All the playable levels.
+- Maze: Displays the maze image.
+- Sprite: Creates a PImage array for the sprite images.
+- Timer: Runs the sprite animations.
+
+Future Steps:
+There are a lot of polish related things that would have been explored if we had more time. For example, screens between levels, and a win screen with a restart option. In addition, some things could be implemented on a gameplay level like indicating when powerups run out. Also, the game save levels aren't very communicative with the maze levels, in that it should save how many pieces have been picked up in previous levels.
+
+Notes:
+We reduced the hitbox of the aliens to make the levels easier to play and thus easier to test. In addition, we reduced the number of saucers for the spaceship to kill.
