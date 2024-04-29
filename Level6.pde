@@ -56,6 +56,7 @@ class Level6 {
                         playing.toggleOff();
                         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
                         pauseScreen.started = false;
+                        break;
                     }
                 }
             }
