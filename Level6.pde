@@ -90,4 +90,8 @@ class Level6 {
             }
         }
     }
+    
+    int returnNxtLvl() {
+        return 6;
+    }
 }
