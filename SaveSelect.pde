@@ -32,7 +32,7 @@ class SaveSelect {
       TableRow newRow = savesTable.addRow();
       newRow.setInt("saveNum", i + 1);
       newRow.setString("name", "EMPTY");
-      newRow.setInt("level", 0);
+      newRow.setInt("level", 1);
       newRow.setInt("new", 1);
     }
     saveTable(savesTable, fileName);
