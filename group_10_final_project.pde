@@ -11,6 +11,7 @@ SaveSelect saveScreen;
 Saves currentSave;
 StartScreen startScreen;
 PauseScreen pauseScreen;
+GameEnd endScreen;
 SoundFile music;
 PImage logo;
 PFont jersey;
@@ -35,9 +36,10 @@ void setup() {
   pauseScreen = new PauseScreen(playing, music, startScreen, saveScreen);
   nameScreen.pauseScreen = pauseScreen;
   saveScreen.pauseScreen = pauseScreen;
-  startScreen = new StartScreen("label", "message", saveScreen);
+  startScreen = new StartScreen("label", "SPACESHIP DECIMUS IS BROKEN AND IT'S UP TO YOU TO COLLECT THE MISSING PIECES, PUT IT TOGETHER, AND FLY BACK TO YOUR PLANET! TO EXIT EACH MAZE LEVEL, USE THE ARROW KEYS TO MOVE AROUND COLLECT ALL THE AVAILABLE PIECES. AFTER FIVE MAZE LEVELS, USE THE ARROW KEYS TO FLY YOUR SHIP AND USE THE SPACEBAR TO SHOOT! WATCH OUT FOR ALIENS AND ASTEROIDS THOUGH, THEY COULD KILL YOU!", saveScreen);
   pauseScreen.startScreen = startScreen;
   pauseScreen.saveScreen = saveScreen;
+  endScreen = new GameEnd(playing, startScreen);
   
   //SOUND
   music = new SoundFile(this, "8bit.mp3");
@@ -46,7 +48,7 @@ void setup() {
   pauseScreen.music = music;
   
   // Load level = DEPENDS ON SAVE FILE
-  level = 1;
+  //level = 1;
   
   // Setup level
   level1 = new Level1();
@@ -70,24 +72,51 @@ void draw() {
     background(0);
     stroke(255);
     noFill();
+    //currentSave.level = level;
+    if (currentSave.level != level) {
+      level1 = new Level1();
+      level2 = new Level2();
+      level3 = new Level3();
+      level4 = new Level4();
+      level5 = new Level5();
+      level6 = new Level6();
+    }
+      
+    level = currentSave.level;
+    println(currentSave.name);
     
     // Update level
     switch(level) {
       case 1: 
         level1.update(upPressed, downPressed, leftPressed, rightPressed);
-        level = level1.returnNxtLvl(); break;
+        level = level1.returnNxtLvl(); 
+        currentSave.level = level;
+        break;
+        
       case 2:
         level2.update(upPressed, downPressed, leftPressed, rightPressed);
-        level = level2.returnNxtLvl(); break;
+        level = level2.returnNxtLvl(); 
+        currentSave.level = level;
+        break;
+        
       case 3:
         level3.update(upPressed, downPressed, leftPressed, rightPressed);
-        level = level3.returnNxtLvl(); break;
+        level = level3.returnNxtLvl(); 
+        currentSave.level = level;
+        break;
+        
       case 4:
         level4.update(upPressed, downPressed, leftPressed, rightPressed);
-        level = level4.returnNxtLvl(); break;
+        level = level4.returnNxtLvl(); 
+        currentSave.level = level;
+        break;
+        
       case 5:
         level5.update(upPressed, downPressed, leftPressed, rightPressed);
-        level = level5.returnNxtLvl(); break;
+        level = level5.returnNxtLvl(); 
+        currentSave.level = level;
+        break;
+        
       case 6:
         level6.update();
         break;
@@ -98,6 +127,13 @@ void draw() {
   saveScreen.display();
   nameScreen.display();
   pauseScreen.display();
+  endScreen.display();
+}
+
+void gameEnder() {
+  endScreen.onScreen = true;
+  playing.toggled = false;
+  pauseScreen.started = false;
 }
 
 void keyPressed() {
@@ -128,6 +164,8 @@ void keyReleased() {
     rightPressed = false;
   } if (key == 32) {
     spacePressed = false;
+  } if ((key == BACKSPACE) & playing.toggled) {
+    gameEnder();
   }
 }
 
@@ -145,6 +183,10 @@ void mouseReleased() {
     if (saveScreen.onScreen) {
       saveScreen.mouseInteract();
       currentSave = saveScreen.getCurrentSave();
+      break;
+    }
+    if (endScreen.onScreen) {
+      endScreen.mouseInteract();
       break;
     }
     break;

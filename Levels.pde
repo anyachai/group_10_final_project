@@ -69,7 +69,8 @@ class Level1 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
-        startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        pauseScreen.started = false;
       }
     }
     
@@ -181,7 +182,8 @@ class Level2 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
-        startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
       }
     }
     
@@ -304,7 +306,8 @@ class Level3 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
-        startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
       }
     }
     
@@ -431,7 +434,8 @@ class Level4 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
-        startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
       }
     }
     
@@ -573,7 +577,8 @@ class Level5 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
-        startScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+        pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
       }
     }
     

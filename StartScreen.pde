@@ -23,7 +23,7 @@ class StartScreen {
       fill(255);
       textSize(40);
       textAlign(CENTER);
-      textSize(20);
+      textSize(25);
       textAlign(CENTER);
       text(message, 250, 250, 500, 300);
 
