@@ -68,6 +68,7 @@ class Level1 {
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
+        saveScreen.updateTable();
         setup(); // Restart level
         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
         pauseScreen.started = false;
@@ -182,6 +183,7 @@ class Level2 {
       if (lives == 0){
         playing.toggleOff();
         setup(); // Restart level
+        saveScreen.updateTable();
         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
         pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
       }
@@ -305,6 +307,7 @@ class Level3 {
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
+        saveScreen.updateTable();
         setup(); // Restart level
         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
         pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
@@ -433,6 +436,7 @@ class Level4 {
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
+        saveScreen.updateTable();
         setup(); // Restart level
         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
         pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
@@ -576,6 +580,7 @@ class Level5 {
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
+        saveScreen.updateTable();
         setup(); // Restart level
         endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
         pauseScreen.started = false; // CHANGE TO GAME OVER SCREEN
