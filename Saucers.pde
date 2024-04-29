@@ -5,31 +5,43 @@ class Saucers {
     Saucers(int saucerPopulation) {
         saucerLimit = saucerPopulation;
         for (int i = 0; i < saucerLimit; i++) {
-          saucerList.add(newSaucer());
+            //saucerList.add(newSaucer(i));
+            switch(i/3) {
+                case 0: 
+                    saucerList.add(new SaucerA("saucerA", 2, true, 0, 0, 0, 0));
+                    break;
+                case 1:
+                    saucerList.add(new SaucerB("saucerB", 3, true, 0, 0, 0, 0));
+                    break;
+                case 2:
+                    saucerList.add(new SaucerC("saucerC", 4, true, 0, 0, 0, 0));
+                    break;
+            }
         }
     }
     
     // Randomly generate new saucer on the edge
-    SaucerA newSaucer() {
-        float r = random(3);
+    //SaucerA newSaucer() {
+    //    float r = random(3);
         
-        if (r <= 1) {
-            return new SaucerA("saucerA", 2, true, 0, 0, 0, 0);
-        } else if (r <= 2) {
-            return new SaucerB("saucerB", 3, true, 0, 0, 0, 0);
-        } else {
-            return new SaucerC("saucerC", 4, true, 0, 0, 0, 0);
-        }
-    }
+    //    if (r <= 1) {
+    //        return new SaucerA("saucerA", 2, true, 0, 0, 0, 0);
+    //    } else if (r <= 2) {
+    //        return new SaucerB("saucerB", 3, true, 0, 0, 0, 0);
+    //    } else {
+    //        return new SaucerC("saucerC", 4, true, 0, 0, 0, 0);
+    //    }
+    //}
     
     void display() {
         for (SaucerA i : saucerList) {
             i.display();
         }
         
-        if (saucerList.size() < saucerLimit) {
-            saucerList.add(newSaucer());
-        }
+        // Enable or disable new saucers to spawn
+        //if (saucerList.size() < saucerLimit) {
+        //    saucerList.add(newSaucer());
+        //}
     }
     
     void burst(int i, float pos_x, float pos_y, float vel_x, float vel_y) {         

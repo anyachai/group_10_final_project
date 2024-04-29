@@ -15,7 +15,7 @@ class Maze{
     
     for (int i = 0; i < numLevels; i++) {
       String imageName = leading + nf(i, padding) + trailing;
-      print(imageName);
+      //print(imageName);
       mazes[i] = loadImage(imageName);
     }
   }

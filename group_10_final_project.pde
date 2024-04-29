@@ -83,7 +83,7 @@ void draw() {
     }
       
     level = currentSave.level;
-    println(currentSave.name);
+    //println(currentSave.name);
     
     // Update level
     switch(level) {

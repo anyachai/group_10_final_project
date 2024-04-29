@@ -1,5 +1,5 @@
 class Level6 {
-    Saucers saucers = new Saucers(8);
+    Saucers saucers = new Saucers(9);
     Spaceship ship = new Spaceship();
     ArrayList<Laser> lasers = new ArrayList<Laser>();
     int cooldown = 0;
@@ -47,26 +47,45 @@ class Level6 {
                     laser_vx = lasers.get(i).vel.x * 0.3;
                     laser_vy = lasers.get(i).vel.y * 0.3;
                     saucers.burst(j, saucer_x, saucer_y, laser_vx, laser_vy);
-                    //currentScore++;
+                    
+                    // Activate when all saucers are destroyed
+                    if (saucers.saucerList.size() == 0) {
+                        saucers = new Saucers(9);
+                        ship = new Spaceship();
+                        lasers.clear();
+                        playing.toggleOff();
+                        endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+                        pauseScreen.started = false;
+                    }
                 }
             }
         }
     }
     
     void shipToSaucer() {
+        float top_x = ship.topPoint.x, top_y = ship.topPoint.y, 
+              left_x = ship.leftPoint.x, left_y = ship.leftPoint.y, 
+              right_x = ship.rightPoint.x, right_y = ship.rightPoint.y;
         float saucer_x, saucer_y;
         int saucer_rad;
-      
         
         for (int j = saucers.saucerList.size() - 1; j >= 0; j--) {
             saucer_x = saucers.saucerList.get(j).pos.x;
             saucer_y = saucers.saucerList.get(j).pos.y;
             saucer_rad = saucers.saucerList.get(j).radius;
       
-            // If laser touches saucer, destroy or split it
-            if (sq(ship.pos.x-saucer_x) + sq(ship.pos.y-saucer_y) <= sq(saucer_rad)) {
+            // If ship touches saucer, destroy or split it
+            if ((sq(top_x-saucer_x) + sq(top_y-saucer_y) <= sq(saucer_rad)) ||
+                (sq(left_x-saucer_x) + sq(left_y-saucer_y) <= sq(saucer_rad)) ||
+                (sq(right_x-saucer_x) + sq(right_y-saucer_y) <= sq(saucer_rad))) {
                 // Game Over goes here.
-                noLoop();
+                saucers = new Saucers(9);
+                ship = new Spaceship();
+                lasers.clear();
+                playing.toggleOff();
+                endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
+                pauseScreen.started = false;
+                break;
             }
         }
     }
