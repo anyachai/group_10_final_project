@@ -62,8 +62,8 @@ class Level1 {
 
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer()) {
-      respawnPlayer();
       starOn = true;
+      respawnPlayer();
       lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
@@ -428,8 +428,8 @@ class Level4 {
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer() || alien3.detectPlayer() || alien4.detectPlayer()) {
       respawnPlayer();
-      lives -= 1;
       starOn = true;
+      lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
