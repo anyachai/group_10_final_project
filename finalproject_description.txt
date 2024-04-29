@@ -20,7 +20,10 @@ Anya: (Responsible for Maze levels 1-5)
 - Timer: Runs the sprite animations.
 
 Future Steps:
-There are a lot of polish related things that would have been explored if we had more time. For example, screens between levels, and a win screen with a restart option. In addition, some things could be implemented on a gameplay level like indicating when powerups run out. Also, the game save levels aren't very communicative with the maze levels, in that it should save how many pieces have been picked up in previous levels.
+There are a lot of polish related things that could be explored in the future. 
+For example, screens between levels, and a win screen with a restart option. 
+In addition, some things could be implemented on a gameplay level like indicating when powerups run out. 
+Also, the game save levels aren't very communicative with the maze levels, in that it should save how many pieces have been picked up in previous levels.
 
 Notes:
 We reduced the hitbox of the aliens to make the levels easier to play and thus easier to test. In addition, we reduced the number of saucers for the spaceship to kill.
