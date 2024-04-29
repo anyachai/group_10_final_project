@@ -25,6 +25,10 @@ void setup() {
   frameRate(35);
   size(500, 500);
   
+  // Setup font
+  jersey = createFont("Jersey10-Regular.ttf",100);
+  pixel = createFont("PixelifySans.ttf",100);
+  
   // Create instances of GUI screens
   logo = loadImage("logo.png");
   playing = new Toggle(false);
@@ -36,7 +40,7 @@ void setup() {
   pauseScreen = new PauseScreen(playing, music, startScreen, saveScreen);
   nameScreen.pauseScreen = pauseScreen;
   saveScreen.pauseScreen = pauseScreen;
-  startScreen = new StartScreen("label", "SPACESHIP DECIMUS IS BROKEN AND IT'S UP TO YOU TO COLLECT THE MISSING PIECES, PUT IT TOGETHER, AND FLY BACK TO YOUR PLANET! TO EXIT EACH MAZE LEVEL, USE THE ARROW KEYS TO MOVE AROUND COLLECT ALL THE AVAILABLE PIECES. AFTER FIVE MAZE LEVELS, USE THE ARROW KEYS TO FLY YOUR SHIP AND USE THE SPACEBAR TO SHOOT! WATCH OUT FOR ALIENS AND ASTEROIDS THOUGH, THEY COULD KILL YOU!", saveScreen);
+  startScreen = new StartScreen("label", "SPACESHIP DECIMUS IS BROKEN AND IT'S UP TO YOU TO COLLECT THE MISSING PIECES, PUT IT TOGETHER, AND FLY BACK TO YOUR PLANET! TO EXIT EACH MAZE LEVEL, USE THE ARROW KEYS TO MOVE AROUND COLLECT ALL THE AVAILABLE PIECES. AFTER FIVE MAZE LEVELS, USE THE ARROW KEYS TO FLY YOUR SHIP AND USE THE SPACEBAR TO SHOOT! WATCH OUT FOR ALIENS AND ASTEROIDS THOUGH, THEY COULD KILL YOU!", saveScreen, pixel);
   pauseScreen.startScreen = startScreen;
   pauseScreen.saveScreen = saveScreen;
   endScreen = new GameEnd(playing, startScreen);
@@ -58,9 +62,7 @@ void setup() {
   level5 = new Level5();
   level6 = new Level6();
   
-  // Setup font
-  jersey = createFont("Jersey10-Regular.ttf",100);
-  pixel = createFont("PixelifySans.ttf",100);
+
   textFont(jersey);
 }
 

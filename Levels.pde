@@ -46,7 +46,6 @@ class Level1 {
 
     // Check if the player has collected the star
     if (star.detectPlayer(first)) {
-      first = false;
       starOn = false;
       powerOn = true;
     }
@@ -64,6 +63,7 @@ class Level1 {
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer()) {
       respawnPlayer();
+      starOn = true;
       lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
@@ -159,7 +159,6 @@ class Level2 {
 
     // Check if the player has collected the star
     if (star.detectPlayer(first)) {
-      first = false;
       starOn = false;
       powerOn = true;
     }
@@ -177,6 +176,7 @@ class Level2 {
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer() || alien3.detectPlayer()) {
       respawnPlayer();
+      starOn = true;
       lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
@@ -279,7 +279,6 @@ class Level3 {
 
     // Check if the player has collected the star
     if (star.detectPlayer(first)) {
-      first = false;
       starOn = false;
       powerOn = true;
     }
@@ -301,6 +300,7 @@ class Level3 {
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer() || alien3.detectPlayer() || alien4.detectPlayer()) {
       respawnPlayer();
+      starOn = true;
       lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
@@ -407,7 +407,6 @@ class Level4 {
 
     // Check if the player has collected the star
     if (star.detectPlayer(first)) {
-      first = false;
       starOn = false;
       powerOn = true;
     }
@@ -430,6 +429,7 @@ class Level4 {
     if (alien.detectPlayer() || alien2.detectPlayer() || alien3.detectPlayer() || alien4.detectPlayer()) {
       respawnPlayer();
       lives -= 1;
+      starOn = true;
       hearts.update(lives, "dead.png");
       if (lives == 0){
         playing.toggleOff();
@@ -545,7 +545,6 @@ class Level5 {
 
     // Check if the player has collected the star
     if (star.detectPlayer(first)) {
-      first = false;
       starOn = false;
       powerOn = true;
     }
@@ -572,6 +571,7 @@ class Level5 {
     // Check if the alien collides with the player
     if (alien.detectPlayer() || alien2.detectPlayer() || alien3.detectPlayer() || alien4.detectPlayer()) {
       respawnPlayer();
+      starOn = true;
       lives -= 1;
       hearts.update(lives, "dead.png");
       if (lives == 0){
