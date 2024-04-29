@@ -74,43 +74,47 @@ void draw() {
     background(0);
     stroke(255);
     noFill();
-    //currentSave.level = level;
-    //if (currentSave.level != level) {
-    //  level1 = new Level1();
-    //  level2 = new Level2();
-    //  level3 = new Level3();
-    //  level4 = new Level4();
-    //  level5 = new Level5();
-    //  level6 = new Level6();
-    //}
+    if (currentSave.level != level) {
+      level1 = new Level1();
+      level2 = new Level2();
+      level3 = new Level3();
+      level4 = new Level4();
+      level5 = new Level5();
+      level6 = new Level6();
+    }
       
-    //level = currentSave.level;
+    level = currentSave.level;
     //println(currentSave.name);
     
     // Update level
     switch(currentSave.level) {
       case 1: 
         level1.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level1.returnNxtLvl();
         currentSave.level = level1.returnNxtLvl(); 
         break;
         
       case 2:
         level2.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level2.returnNxtLvl();
         currentSave.level = level2.returnNxtLvl(); 
         break;
         
       case 3:
         level3.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level3.returnNxtLvl();
         currentSave.level = level3.returnNxtLvl(); 
         break;
         
       case 4:
         level4.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level4.returnNxtLvl();
         currentSave.level = level4.returnNxtLvl(); 
         break;
         
       case 5:
         level5.update(upPressed, downPressed, leftPressed, rightPressed);
+        level = level5.returnNxtLvl();
         currentSave.level = level5.returnNxtLvl(); 
         break;
         

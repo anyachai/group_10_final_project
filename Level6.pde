@@ -83,6 +83,7 @@ class Level6 {
                 saucers = new Saucers(9);
                 ship = new Spaceship();
                 lasers.clear();
+                saveScreen.updateTable();
                 playing.toggleOff();
                 endScreen.onScreen = true; // CHANGE TO GAME OVER SCREEN
                 pauseScreen.started = false;
