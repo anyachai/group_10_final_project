@@ -1,5 +1,5 @@
 class Level6 {
-    Saucers saucers = new Saucers(9);
+    Saucers saucers = new Saucers(6);
     Spaceship ship = new Spaceship();
     ArrayList<Laser> lasers = new ArrayList<Laser>();
     int cooldown = 0;
