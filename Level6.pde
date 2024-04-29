@@ -50,7 +50,7 @@ class Level6 {
                     
                     // Activate when all saucers are destroyed
                     if (saucers.saucerList.size() == 0) {
-                        saucers = new Saucers(9);
+                        saucers = new Saucers(6);
                         ship = new Spaceship();
                         lasers.clear();
                         playing.toggleOff();
@@ -80,7 +80,7 @@ class Level6 {
                 (sq(left_x-saucer_x) + sq(left_y-saucer_y) <= sq(saucer_rad)) ||
                 (sq(right_x-saucer_x) + sq(right_y-saucer_y) <= sq(saucer_rad))) {
                 // Game Over goes here.
-                saucers = new Saucers(9);
+                saucers = new Saucers(6);
                 ship = new Spaceship();
                 lasers.clear();
                 saveScreen.updateTable();

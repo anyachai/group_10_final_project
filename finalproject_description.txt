@@ -19,11 +19,20 @@ Anya: (Responsible for Maze levels 1-5)
 - Sprite: Creates a PImage array for the sprite images.
 - Timer: Runs the sprite animations.
 
+Ryan: (Responsible for last level and its playability)
+- Constructed Level 6 with the 3 types of flying saucers
+- Built the the player-controlled spaceship that goes forward/backward and rotates
+- Allowed the player to shoot lasers at the saucers with a cooldown timer
+- Lasers will either destroy or split the saucers into smaller saucers
+- Every saucer has at least two hierarchiers of animation: the outer body and the inner bodies.
+- The purple saucer is subclass of the gray saucer, which itself is a subclass of the browwn saucer.
+- When the level begins, all saucers will spawn on the edge. If a large saucer is shot at, it will spawn two smaller saucers near its last position.
+- Allowed the player and saucers to wrap around the screen when they leave the edge.
+- If a player hits a single saucer, it is an instant game over.
+- If a player destroys all the saucers, the game is finished. (You will still get a normal game over screen.) 
+
 Future Steps:
-There are a lot of polish related things that could be explored in the future. 
-For example, screens between levels, and a win screen with a restart option. 
-In addition, some things could be implemented on a gameplay level like indicating when powerups run out. 
-Also, the game save levels aren't very communicative with the maze levels, in that it should save how many pieces have been picked up in previous levels.
+There are a lot of polish related things that would have been explored if we had more time. For example, screens between levels, and a win screen with a restart option. In addition, some things could be implemented on a gameplay level like indicating when powerups run out. Also, the game save levels aren't very communicative with the maze levels, in that it should save how many pieces have been picked up in previous levels. Lastly, there are some things that could use some refactoring. Some of code is difficult to read and maintain.
 
 Notes:
 We reduced the hitbox of the aliens to make the levels easier to play and thus easier to test. In addition, we reduced the number of saucers for the spaceship to kill.
