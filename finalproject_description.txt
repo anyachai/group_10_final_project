@@ -14,7 +14,7 @@ Anya: (Responsible for Maze levels 1-5)
 - Alien (Type of Sprite): Moves either up and down or left and right. Heart is lost when Alien runs into Astronaut.
 - Img Array: Displays things in an array. Either hearts, or maze pieces.
 - Items: A type of item that can be picked up. Either pieces or stars.
-- Levels: All the playable levels.
+- Levels: playable levels 1-5.
 - Maze: Displays the maze image.
 - Sprite: Creates a PImage array for the sprite images.
 - Timer: Runs the sprite animations.
@@ -26,6 +26,7 @@ Ryan: (Responsible for last level, saucer art, and its playability)
 - SaucerB: This is the subclass of saucerA. This medium-sized, gray saucer has three hierarchiers of animation: the outer body and two inner bodies. The outer body rotates clockwise while the inner bodies rotate in alternating directions.
 - SaucerC: This is the subclass of saucerB. This large, purple saucer has three hierarchiers of animation: the outer body and two inner bodies. The outer body rotates clockwise while the inner bodies rotate in alternating directions. 
 - Saucers: This is a class that encapsulates an ArrayList of the above three types of Saucer objects. This class manages the initial spawn, display, and destruction of the saucer objects. Additionally, when a medium SaucerB or large SaucerC is destroyed by a laser, the Saucers class spawns two smaller SaucerAs or SaucerBs near the destroyed saucer object's location. Lastly, when all saucer objects are destroyed, the game is finished. (You will still get a normal game over screen.)
+- Level 6: This last level encapsulates all of the above objects and restarts each object whenever the player wishes to play again.
 - The player-controlled spaceship and saucer objects can wrap around the window when they cross the edge of the window.
 - Desinged of all of outer and inner body art of the saucers.
 
