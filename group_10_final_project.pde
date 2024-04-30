@@ -35,7 +35,7 @@ void setup() {
   nameScreen = new NameEntry(saveScreen, playing, pauseScreen);
   currentSave = new Saves("void", 999, 9999);
   saveScreen = new SaveSelect("SaveFile.csv", currentSave, nameScreen, playing, pauseScreen);
-  saveScreen.resetSaves(); // <-- comment this out to stop saves from resetting at game launch
+  //saveScreen.resetSaves(); // <-- comment this out to stop saves from resetting at game launch
   nameScreen.saveScreen = saveScreen;
   pauseScreen = new PauseScreen(playing, music, startScreen, saveScreen);
   nameScreen.pauseScreen = pauseScreen;
